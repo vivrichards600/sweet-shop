@@ -33,3 +33,12 @@ h1, h2 {
         display: inline;
     }
 }
+
+
+h1 {
+    color: #585858;
+}
+
+a.btn.btn-success.btn-block.addItem {
+    color: white;
+}

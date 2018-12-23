@@ -5,8 +5,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
+    <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
+    <meta name="author" content="Viv Richards">
 
     <title>Sweet Shop</title>
 
@@ -15,46 +16,53 @@
 
     <!-- Custom styles for this template -->
     <link href="css/heroic-features.css" rel="stylesheet">
+    
+    <!-- Custom shop CSS -->
+    <link href="css/custom.css" rel="stylesheet">
 
     <link rel="icon"  type="image/png" href="favicon.png">
 
   </head>
 
-  <body>
+  <body onload="init()">  
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Sweet Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Sweet Shop
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+    
+        <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home
+              <li class="nav-item active">
+                <a class="nav-link" href="sweets.html">Sweets</a>
                 <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sweets.html">Sweets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-          </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Your Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
+              </li>
+            </ul>
         </div>
       </div>
-    </nav>
+      </nav>
+
+    
 
     <!-- Page Content -->
     <div class="container">
 
       <!-- Jumbotron Header -->
-      <header class="jumbotron my-4">
+      <header class="my-4">
         <h1 class="display-3">Browse sweets</h1>
         <p class="lead"><span class="lead">Browse our delicious choice of retro sweets.</span></p>        
      </header>
@@ -64,52 +72,56 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/cups.jpg" alt="">
+            <img class="card-img-top" src="img/cups.jpg" alt="chocolate cups">
             <div class="card-body">
               <h4 class="card-title">Chocolate Cups</h4>
               <p class="card-text">Candy Chocolate Cups.</p>
+              <p><small class="text-muted">£1.00</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+              <a class="btn btn-success btn-block addItem" data-id="1" data-name="Chocolate Cups" data-price="1.00">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/straw.JPG" alt="">
+            <img class="card-img-top" src="img/straw.JPG" alt="sherbert straws">
             <div class="card-body">
               <h4 class="card-title">Sherbert Straws</h4>
               <p class="card-text">Rainbow Dust Straws - Choose your colour.</p>
+              <p><small class="text-muted">£0.75</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+              <a class="btn btn-success btn-block addItem" data-id="2" data-name="Sherbert Straws" data-price="0.75">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/discs.jpeg" alt="">
+            <img class="card-img-top" src="img/discs.jpeg" alt="sherbert discs">
             <div class="card-body">
               <h4 class="card-title">Sherbert Discs</h4>
               <p class="card-text">UFO's Sherbert Filled Flying Saucers.</p>
+              <p><small class="text-muted">£0.95</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="3" data-name="Sherbet Discs" data-price="0.95">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/bonbon.jpg" alt="">
+            <img class="card-img-top" src="img/bonbon.jpg" alt="bonbon">
             <div class="card-body">
               <h4 class="card-title">Bon Bons</h4>
               <p class="card-text">Pink Strawberry Bonbons - sugar dusted, strawberry flavoured chewy sweets.</p>
+              <p><small class="text-muted">£1.00</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="4" data-name="Strawberry Bon Bons" data-price="1.00">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -121,52 +133,56 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/jellies.gif" alt="">
+            <img class="card-img-top" src="img/jellies.jpg" alt="jellies">
             <div class="card-body">
               <h4 class="card-title">Jellies</h4>
               <p class="card-text">Fruit flavoured chewy sea monster jellies.</p>
+              <p><small class="text-muted">£0.75</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+              <a class="btn btn-success btn-block addItem" data-id="5" data-name="Jellies" data-price="0.75">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/salads.jpg" alt="">
+            <img class="card-img-top" src="img/salads.jpg" alt="fruit salads">
             <div class="card-body">
               <h4 class="card-title">Fruit Salads</h4>
               <p class="card-text">Fruit salad chews.</p>
+              <p><small class="text-muted">£0.50</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="6" data-name="Fruit Salads" data-price="0.50">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/tat.jpg" alt="">
+            <img class="card-img-top" src="img/tat.jpg" alt="bubble gum">
             <div class="card-body">
               <h4 class="card-title">Bubble Gums</h4>
               <p class="card-text">Fruit flavoured bubble gums and tattoo.</p>
+              <p><small class="text-muted">£0.25</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="7" data-name="Bubble Gums" data-price="0.25">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/wha.jpg" alt="">
+            <img class="card-img-top" src="img/wha.jpg" alt="wham bar">
             <div class="card-body">
               <h4 class="card-title">Wham Bars</h4>
               <p class="card-text">Wham original raspberry chew bar.</p>
+              <p><small class="text-muted">£0.15</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="8" data-name="Wham Bar" data-price="0.15">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -178,52 +194,56 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/whistles.jpg" alt="">
+            <img class="card-img-top" src="img/whistles.jpg" alt="sweet whistle">
             <div class="card-body">
               <h4 class="card-title">Whistles</h4>
               <p class="card-text">Candy whistles.</p>
+              <p><small class="text-muted">£0.25</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="9" data-name="Sweet Whistle" data-price="0.25">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/sherbert.jpg" alt="">
+            <img class="card-img-top" src="img/sherbert.jpg" alt="sherbert">
             <div class="card-body">
               <h4 class="card-title">Sherbert Fountains</h4>
               <p class="card-text">Sherbert fountain with a liquorice stick for dipping.</p>
+              <p><small class="text-muted">£0.35</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="10" data-name="Sherbert Fountain" data-price="0.35">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/mix.jpg" alt="">
+            <img class="card-img-top" src="img/mix.jpg" alt="swansea mixture">
             <div class="card-body">
               <h4 class="card-title">Swansea Mixture</h4>
               <p class="card-text">Originally made in Swansea this classic mix is popular across South Wales.</p>
+              <p><small class="text-muted">£1.50</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="11" data-name="Swansea Mixture" data-price="1.50">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/beans.jpg" alt="">
+            <img class="card-img-top" src="img/beans.jpg" alt="beans">
             <div class="card-body">
               <h4 class="card-title">Chocolate Beans</h4>
               <p class="card-text">Chocolate beans.</p>
+              <p><small class="text-muted">£0.80</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="12" data-name="Chocolate Beans" data-price="0.80">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -235,56 +255,61 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/nerds.jpg" alt="">
+            <img class="card-img-top" src="img/nerds.jpg" alt="nerds">
             <div class="card-body">
               <h4 class="card-title">Nerds</h4>
               <p class="card-text">American candy sweets.</p>
+              <p><small class="text-muted">£0.60</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="13" data-name="Nerds" data-price="0.60">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/drum.jpg" alt="">
+            <img class="card-img-top" src="img/drum.jpg" alt="drumstick">
             <div class="card-body">
               <h4 class="card-title">Drumsticks</h4>
               <p class="card-text">Raspberry and milk flavour chews.</p>
+              <p><small class="text-muted">£0.20</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="14" data-name="Raspberry Drumstick" data-price="0.20">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/bubbly.jpg" alt="">
+            <img class="card-img-top" src="img/bubbly.jpg" alt="bubbly">
             <div class="card-body">
               <h4 class="card-title">Bubbly</h4>
               <p class="card-text">Fruit flavoured bubble gum.</p>
+              <p><small class="text-muted">£0.10</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="15" data-name="Bubbly" data-price="0.10">Add to Cart</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="img/dolly.jpg" alt="">
+            <img class="card-img-top" src="img/dolly.jpg" alt="dolly mixtures">
             <div class="card-body">
               <h4 class="card-title">Dolly Mixture</h4>
               <p class="card-text">Dolly mixture.</p>
+              <p><small class="text-muted">£0.90</small></p>
             </div>
             <div class="card-footer">
-              <a href="login.html" class="btn btn-success">Add to Cart</a>
+                <a class="btn btn-success btn-block addItem" data-id="16" data-name="Dolly Mixture" data-price="0.90">Add to Cart</a>
             </div>
           </div>
         </div>
 
+        
       </div>
       <!-- /.row -->
 
@@ -292,17 +317,20 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-light">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Sweet Shop 2018</p>
+        <p class="m-0 text-center">Copyright &copy; Sweet Shop Project 2018</p>
       </div>
       <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Cutom Shop JavaScript -->
+    <script src="js/custom.js"></script>
   </body>
 
 </html>

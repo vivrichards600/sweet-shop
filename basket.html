@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
+    <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
+    <meta name="author" content="Viv Richards">
+
+    <title>Sweet Shop</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+    
+    <!-- Custom shop CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+    
+    <link rel="icon"  type="image/png" href="favicon.png">
+  </head>
+
+  <body onload="init()">
+
+      <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Sweet Shop
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="sweets.html">Sweets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Your Account</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
+                <span class="sr-only">(current)</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+      </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <!-- /.row -->
+      <!-- Jumbotron Header -->
+      <header class="my-4">
+          <h1 class="display-3">Your Basket</h1>
+          <p class="lead">
+          Please check your order details and then enter your payment and delivery details.  
+        </p>
+        </header>
+
+      <!-- Page Features -->
+      <div class="row">
+        
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">0</span>
+          </h4>
+          <ul class="list-group mb-3" id="basketItems">
+          </ul>
+
+          <h4 class="mb-3 text-muted">Delivery</h4>
+            <div class="d-block my-3">
+
+              <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="exampleRadios" id="exampleRadios1" value="0.00" checked onclick="getCartDetails();">
+                <label class="custom-control-label" for="exampleRadios1">
+                  Collect (FREE)
+                </label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="exampleRadios" id="exampleRadios2" value="1.99" onclick="getCartDetails();">
+                <label class="custom-control-label" for="exampleRadios2">
+                  Standard Shipping (£1.99)
+                </label>
+              </div>
+              </div>
+              <hr class="mb-4">
+
+          
+              <form>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Promo code"> 
+              <div class="invalid-feedback">
+                Please input a valid promo code.
+              </div>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </div>
+          </form>
+
+          
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate="">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="email">Email <span class="text-muted"></span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">Country</label>
+                <select class="custom-select d-block w-100" id="country" required="">
+                  <option value="">Choose...</option>
+                  <option>United Kingdom</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">City</label>
+                <select class="custom-select d-block w-100" id="city" required="">
+                  <option value="">Choose...</option>
+                  <option>Bristol</option>
+                  <option>Cardiff</option>
+                  <option>Swansea</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">Payment</h4>
+<!-- 
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                <label class="custom-control-label" for="credit">Credit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="debit">Debit card</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                <label class="custom-control-label" for="paypal">Paypal</label>
+              </div>
+            </div> -->
+
+
+
+            
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+
+      <!-- /.row -->
+
+    </div>
+    </div>
+    <br>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-light">
+      <div class="container">
+        <p class="m-0 text-center">Copyright &copy; Sweet Shop Project 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Cutom Shop JavaScript -->
+    <script src="js/custom.js"></script>
+    
+    <script>
+      $("#dateTime").val(new Date().toLocaleString());
+    </script>
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </body>
+
+</html>

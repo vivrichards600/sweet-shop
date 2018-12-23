@@ -5,8 +5,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
+    <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
+    <meta name="author" content="Viv Richards">
 
     <title>Sweet Shop</title>
 
@@ -15,44 +16,46 @@
 
     <!-- Custom styles for this template -->
     <link href="css/heroic-features.css" rel="stylesheet">
-
     
-    <!-- Bootstrap core CSS -->
+    <!-- Custom shop CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
     <link rel="icon"  type="image/png" href="favicon.png">
 
   </head>
 
-  <body>
+  <body onload="init()">
+
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Sweet Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Sweet Shop
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+    
+        <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home
+              <li class="nav-item">
+                <a class="nav-link" href="sweets.html">Sweets</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="about.html">About</a>
                 <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sweets.html">Sweets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-          </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Your Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
+              </li>
+            </ul>
         </div>
       </div>
-    </nav>
+      </nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -67,9 +70,9 @@
       </div>
       <!-- /.row -->
       <!-- Jumbotron Header -->
-      <header class="jumbotron my-4">
-        <h1>Sweet Shop Project</h1>
-		  <p>
+      <header class="my-4">
+        <h1 class="display-3">Sweet Shop Project</h1>
+        <p class="lead">
         Sweet Shop is a project created to help demonstrate some of the great features of the Chrome DevTools which may be of use to people who help test web applications.
       
         Sweet Shop encompasses common issues found in real-world web applications!  
@@ -82,21 +85,21 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-light">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Sweet Shop 2018</p>
+        <p class="m-0 text-center">Copyright &copy; Sweet Shop Project 2018</p>
       </div>
       <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    
-    <script>
-      $("#dateTime").val(new Date().toLocaleString());
-    </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Cutom Shop JavaScript -->
+    <script src="js/custom.js"></script>
+
   </body>
 
 </html>

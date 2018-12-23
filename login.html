@@ -5,8 +5,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
+    <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
+    <meta name="author" content="Viv Richards">
 
     <title>Sweet Shop</title>
 
@@ -16,67 +17,77 @@
     <!-- Custom styles for this template -->
     <link href="css/heroic-features.css" rel="stylesheet">
     
+    <!-- Custom shop CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+    
     <link rel="icon"  type="image/png" href="favicon.png">
   </head>
 
-  <body>
+  <body onload="init()">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Sweet Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Sweet Shop
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+    
+        <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home
+              <li class="nav-item">
+                <a class="nav-link" href="sweets.html">Sweets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="login.html">Your Account</a>
                 <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sweets.html">Sweets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-          </ul>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
+              </li>
+            </ul>
         </div>
       </div>
-    </nav>
+      </nav>
 
     <!-- Page Content -->
     <div class="container">
 
       <style>
-        h1 {color:gray;}  
+        h1 {color:#c7c7c7;}  
       </style>
       <!-- Jumbotron Header -->
-      <header class="jumbotron my-4">
-        <h1>Login</h1>
-		<p>Please login to your account so that we can add the selected item to your basket.</p>
+      <header class="my-4">
+        <h1 class="display-3">Login</h1>
+        <p class="lead">Please enter your email address and password in order to login to your account.</p>
       </header>
 
       <!-- Page Features -->
       <div class="row">
 		
         <div class="col-lg-12 col-md-6 mb-4">
-         <form>
+          <form class="needs-validation" novalidate="">
 		  <div class="form-group">
 			<label for="exampleInputEmail1">Email address</label>
-			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="you@example.com" required>
+      <div class="invalid-feedback">
+        Please enter a valid email address.
+      </div>
       <input type="hidden" id="dateTime" value="" />
       <!-- Adding css inline style botch for now -->
-      <small id="emailHelp" class="form-text text-muted" style="font-size:1px;">We'll never share your email with anyone else.</small>
-		  </div>
+      </div>
 		  <div class="form-group">
 			<label for="exampleInputPassword1">Password</label>
 			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-      </div>
+      <div class="invalid-feedback">
+        Please enter a valid password.
+      </div>  
+    </div>
 		  <button type="submit" class="btn btn-primary login">Login</button>
 		</form>
         </div>
@@ -89,21 +100,47 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-light">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Sweet Shop 2018</p>
+        <p class="m-0 text-center">Copyright &copy; Sweet Shop Project 2018</p>
       </div>
       <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Cutom Shop JavaScript -->
+    <script src="js/custom.js"></script>
     
     <script>
       $("#dateTime").val(new Date().toLocaleString());
     </script>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
   </body>
 
 </html>
