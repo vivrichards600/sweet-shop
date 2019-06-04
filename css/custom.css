@@ -46,3 +46,8 @@ a.btn.btn-success.btn-block.addItem {
 .sweets {
     width:164px;
 }
+
+footer img {
+    height: 25px;
+    margin-right: 5px;
+}
