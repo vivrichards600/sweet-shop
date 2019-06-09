@@ -5,8 +5,8 @@ node_js:
   - "node"
 install:       npm install
 script:
-  - npm test
-  - gulp
+  - webdriver-manager start
+  - protractor conf.js
 cache:
   directories:
     - node_modules
