@@ -1,7 +1,7 @@
 config:
   target: 'https://sweetshop.netlify.com'
   phases:
-    - duration: 30
+    - duration: 60
       arrivalRate: 20
   defaults:
     headers:
