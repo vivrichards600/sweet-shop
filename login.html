@@ -1,183 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
-    <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
-    <meta name="author" content="Viv Richards">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Sweet Shop Project for trying out Chrome DevTools features">
+  <meta name="keywords" content="sweet shop,chrome, devtool, testing, development, tips, tricks">
+  <meta name="author" content="Viv Richards">
 
-    <title>Sweet Shop</title>
+  <title>Sweet Shop</title>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131763802-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131763802-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'UA-131763802-1');
-    </script>
+    gtag('config', 'UA-131763802-1');
+  </script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/heroic-features.css" rel="stylesheet">
-    
-    <!-- Custom shop CSS -->
-    <link href="css/custom.css" rel="stylesheet">
-    
-    <link rel="icon"  type="image/png" href="favicon.png">
-  </head>
+  <!-- Custom styles for this template -->
+  <link href="css/heroic-features.css" rel="stylesheet">
 
-  <body onload="init()">
+  <!-- Custom shop CSS -->
+  <link href="css/custom.css" rel="stylesheet">
 
-      <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-              Sweet Shop
-            </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="sweets.html">Sweets</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="login.html">Your Account</a>
-                <span class="sr-only">(current)</span>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
-              </li>
-            </ul>
-        </div>
-      </div>
-      </nav>
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
 
-    <!-- Page Content -->
+<body onload="init()">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="favicon.png" width="30" height="30"
+          class="d-inline-block align-top" alt="">
+        Sweet Shop
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <style>
-        h1 {color:#c7c7c7;}  
-      </style>
-      <!-- Jumbotron Header -->
-      <header class="my-4">
-        <h1 class="display-3">Login</h1>
-        <p class="lead">Please enter your email address and password in order to login to your account.</p>
-      </header>
-
-      <!-- Page Features -->
-      <div class="row">
-		
-        <div class="col-lg-12 col-md-6 mb-4">
-          <form class="needs-validation" novalidate="">
-		  <div class="form-group">
-			<label>Email address</label>
-			<input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="you@example.com" required maxlength="255">
-      <div class="invalid-feedback">
-        Please enter a valid email address.
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="sweets.html">Sweets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="login.html">Your Account</a>
+            <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
+          </li>
+        </ul>
       </div>
-      <input type="hidden" id="dateTime" value="" />
-      <!-- Adding css inline style botch for now -->
-      </div>
-		  <div class="form-group">
-			<label for="exampleInputPassword">Password</label>
-			<input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" required maxlength="30" onpaste="return false;">
-      <div class="invalid-feedback">
-        Please enter a valid password.
-      </div>  
     </div>
-		  <button type="submit" id="btn_login" class="btn btn-primary" onclick="dummyAuth();">Login</button>
-		</form>
-        </div>
+  </nav>
 
-        
+  <!-- Page Content -->
+  <div class="container">
+
+    <style>
+      h1 {
+        color: #c7c7c7;
+      }
+    </style>
+    <!-- Jumbotron Header -->
+    <header class="my-4">
+      <h1 class="display-3">Login</h1>
+      <p class="lead">Please enter your email address and password in order to login to your account.</p>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row">
+
+      <div class="col-lg-12 col-md-6 mb-4">
+        <form class="needs-validation" novalidate="">
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+              placeholder="you@example.com" required maxlength="255">
+            <div class="invalid-feedback">
+              Please enter a valid email address.
+            </div>
+            <input type="hidden" id="dateTime" value="" />
+            <!-- Adding css inline style botch for now -->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" required
+              maxlength="30" onpaste="return false;">
+            <div class="invalid-feedback">
+              Please enter a valid password.
+            </div>
+          </div>
+          <button type="submit" id="btn_login" class="btn btn-primary" onclick="dummyAuth();">Login</button>
+        </form>
       </div>
-      <!-- /.row -->
 
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-light">
+    <div class="container">
+      <p class="m-0 text-center">Copyright &copy; <img src="img/logo.png" alt="Black Mountains Testing">Black Mountains
+        Testing.<br> Sweet Shop Project 2018</p>
     </div>
     <!-- /.container -->
+  </footer>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-light">
-      <div class="container">
-        <p class="m-0 text-center">Copyright &copy; <img src="img/logo.png" alt="Black Mountains Testing">Black Mountains Testing.<br> Sweet Shop Project 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    
-    <!-- Cutom Shop JavaScript -->
-    <script src="js/custom.js"></script>
-    
-    <script>
-      $("#dateTime").val(new Date().toLocaleString());
-    </script>
+  <!-- Cutom Shop JavaScript -->
+  <script src="js/custom.js"></script>
 
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function() {
-    'use strict';
+  <script>
+    $("#dateTime").val(new Date().toLocaleString());
+  </script>
 
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
 
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
 
-<script> 
-  var _0x6d2e=["\x5F","\x73\x75\x62\x73\x74\x72","\x72\x61\x6E\x64\x6F\x6D","\x62\x74\x6E\x5F\x6C\x6F\x67\x69\x6E","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x69\x64","\x62\x74\x6E"];function rn(){return _0x6d2e[0]+ Math[_0x6d2e[2]]().toString(36)[_0x6d2e[1]](2,9)}el= document[_0x6d2e[4]](_0x6d2e[3]),el[_0x6d2e[5]]= _0x6d2e[6]+ rn()
-</script>
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
 
+  <script>
+    var _0x6d2e = ["\x5F", "\x73\x75\x62\x73\x74\x72", "\x72\x61\x6E\x64\x6F\x6D", "\x62\x74\x6E\x5F\x6C\x6F\x67\x69\x6E", "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64", "\x69\x64", "\x62\x74\x6E"]; function rn() { return _0x6d2e[0] + Math[_0x6d2e[2]]().toString(36)[_0x6d2e[1]](2, 9) } el = document[_0x6d2e[4]](_0x6d2e[3]), el[_0x6d2e[5]] = _0x6d2e[6] + rn()
+  </script>
 
-<script>
-  $(document).ready(function() {
-    //$('#username').focus();
+  <script>
+    $(document).ready(function () {
+      //$('#username').focus();
 
-    $('.btn-primary').click(function() {
+      $('.btn-primary').click(function () {
 
-       // event.preventDefault(); // prevent PageReLoad
-
-       var ValidEmail = $('#exampleInputEmail').val() === 'test@user.com'; // User validate
-var ValidPassword = $('#exampleInputPassword').val() === 'qwerty'; // Password validate
+        var ValidEmail = $('#exampleInputEmail').val() === 'test@user.com'; // User validate
+        var ValidPassword = $('#exampleInputPassword').val() === 'qwerty'; // Password validate
 
         if (ValidEmail === true && ValidPassword === true) { // if ValidEmail & ValidPassword
-         alert('yep');
-         window.location.href = "00efc23d-b605-4f31-b97b-6bb276de447e.html";
-       //     window.location = "dashboard.html"; // go to home.html
+
+          window.location.href = "https://sweetshop.netlify.com/00efc23d-b605-4f31-b97b-6bb276de447e.html";
+
         }
+      });
     });
-});
 
   </script>
 
-  </body>
+</body>
 
 </html>
