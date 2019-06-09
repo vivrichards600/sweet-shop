@@ -98,7 +98,7 @@
         Please enter a valid password.
       </div>  
     </div>
-		  <button type="submit" id="btn_login" class="btn btn-primary">Login</button>
+		  <button type="submit" id="btn_login" class="btn btn-primary" onclick="dummyAuth();">Login</button>
 		</form>
         </div>
 
@@ -155,6 +155,28 @@
 <script> 
   var _0x6d2e=["\x5F","\x73\x75\x62\x73\x74\x72","\x72\x61\x6E\x64\x6F\x6D","\x62\x74\x6E\x5F\x6C\x6F\x67\x69\x6E","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x69\x64","\x62\x74\x6E"];function rn(){return _0x6d2e[0]+ Math[_0x6d2e[2]]().toString(36)[_0x6d2e[1]](2,9)}el= document[_0x6d2e[4]](_0x6d2e[3]),el[_0x6d2e[5]]= _0x6d2e[6]+ rn()
 </script>
+
+
+<script>
+  $(document).ready(function() {
+    //$('#username').focus();
+
+    $('.btn-primary').click(function() {
+
+       // event.preventDefault(); // prevent PageReLoad
+
+       var ValidEmail = $('#exampleInputEmail').val() === 'test@user.com'; // User validate
+var ValidPassword = $('#exampleInputPassword').val() === 'qwerty'; // Password validate
+
+        if (ValidEmail === true && ValidPassword === true) { // if ValidEmail & ValidPassword
+         alert('yep');
+         window.location.href = "00efc23d-b605-4f31-b97b-6bb276de447e.html";
+       //     window.location = "dashboard.html"; // go to home.html
+        }
+    });
+});
+
+  </script>
 
   </body>
 

@@ -63,15 +63,13 @@ function getCart(){
     });
 
     document.getElementsByClassName('badge')[0].innerHTML = parseInt(cartItems);
-    
+   
     try {
+        document.getElementsByClassName('badge-pill')[0].innerHTML = cartItems;
         document.getElementsByClassName('cart-items')[0].innerHTML = cartItems;
-        
+  
         document.getElementsByClassName('badge')[0].innerHTML = cartItems;
         document.getElementsByClassName('badge')[1].innerHTML = cartItems;
-
-        
-        document.getElementsByClassName('badge-pill')[0].innerHTML = cartItems;
       }
       catch(error) {
         // do nowt  
