@@ -56,7 +56,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="login.html">Your Account</a>
+            <a class="nav-link" href="login.html">Login</a>
             <span class="sr-only">(current)</span>
           </li>
           <li class="nav-item">
@@ -90,7 +90,7 @@
             <label>Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
               placeholder="you@example.com" required maxlength="255">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback invalid-email">
               Please enter a valid email address.
             </div>
             <input type="hidden" id="dateTime" value="" />
@@ -100,12 +100,15 @@
             <label for="exampleInputPassword">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" required
               maxlength="30" onpaste="return false;">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback invalid-password">
               Please enter a valid password.
             </div>
           </div>
           <button type="submit" id="btn_login" class="btn btn-primary" onclick="dummyAuth();">Login</button>
         </form>
+        <div class="social">
+          <a href="#"><img src="img/twitter.png" alt="twitter"/></a> <a href="#"><img src="img/facebook.png" alt="facebook" /></a> <a href="#"><img src="img/linkedin.png" alt="linkedin"/></a>
+        </div>
       </div>
 
 
@@ -176,12 +179,10 @@
 
         // event.preventDefault(); // prevent PageReLoad
 
-        var ValidEmail = $('#exampleInputEmail').val() === 'test@user.com'; // User validate
-        var ValidPassword = $('#exampleInputPassword').val() === 'qwerty'; // Password validate
+        var ValidEmail = $('#exampleInputEmail').val().length > 3  &&  $('#exampleInputEmail').val().includes("@") ;
+        var ValidPassword = $('#exampleInputPassword').val().length > 0;
 
         if (ValidEmail === true && ValidPassword === true) { // if ValidEmail & ValidPassword
-
-
           event.preventDefault(); // prevent PageReLoad
           window.location.href = "https://sweetshop.netlify.com/00efc23d-b605-4f31-b97b-6bb276de447e.html";
 

@@ -54,7 +54,7 @@
                 <a class="nav-link" href="about.html">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">Your Account</a>
+                <a class="nav-link" href="login.html">Login</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="basket.html"><span class="badge badge-success">0</span> Basket</a>
@@ -70,7 +70,7 @@
       <!-- /.row -->
       <!-- Jumbotron Header -->
       <header class="my-4">
-          <h1 class="display-3">Your Account</h1>
+          <h1 class="display-3">Login</h1>
           <p class="lead">
           Welcome back <a href="#">test@user.com</a></span>  
         </p>
@@ -94,13 +94,199 @@
           <h4 class="mb-3">Previous Orders</h4>
             <div class="row">
               <div class="col-md-12 mb-3">
-                  <li class='list-group-item d-flex justify-content-between lh-condensed grey'><div><h6 class='my-0'>Order Number: <em>018377</em></h6>1st March 2019 6:42pm<br><small class='text-muted'>Chocolate Cups x 5<br>Swansea Mixture x 2</small></div><span class='text-muted'>Total £8.00</span></li>
-                  <li class='list-group-item d-flex justify-content-between lh-condensed'><div><h6 class='my-0'>Order Number: <em>018377</em></h6>11th July 2018 6:42pm<br><small class='text-muted'>Sherbert Straws x 1</small></div><span class='text-muted'>Total £0.75</span></li>
-                  <li class='list-group-item d-flex justify-content-between lh-condensed grey'><div><h6 class='my-0'>Order Number: <em>018377</em></h6>17th February 2018 11:01am<br><small class='text-muted'>Swansea Mixture x 1</small></div><span class='text-muted'>Total £1.50</span></li>
+                  <table id="transactions" class="table table-hover">
+                      <thead class="">
+                        <tr>
+                          <th><a href="javascript:SortTable(0,'N');">Order Number</a></th>
+                          <th><a href="javascript:SortTable(0,'T');">Date Ordered</a></th>
+                          <th><a href="javascript:SortTable(0,'T');">Order Description</a></th>
+                          <th><a href="javascript:SortTable(0,'N');">Order Total</a></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">#1</th>
+                          <td>11th Feb 2019</td>
+                          <td>Swansea Mixture x 1</td>
+                          <td>£1.50</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">#2</th>
+                          <td>11th July 2019</td>
+                          <td>Sherbert Straws x 1</td>
+                          <td>£0.75</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">#3</th>
+                          <td>1st December 2019</td>
+                          <td>Chocolate Cups x 5<br>Swansea Mixture x 2</td>
+                          <td>£8.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
 
               </div>
             </div>
-             
+          
+           <script type="text/javascript">
+/* 
+   Willmaster Table Sort
+   Version 1.1
+   August 17, 2016
+   Updated GetDateSortingKey() to correctly sort two-digit months and days numbers with leading 0.
+   Version 1.0, July 3, 2011
+
+   Will Bontrager
+   https://www.willmaster.com/
+   Copyright 2011,2016 Will Bontrager Software, LLC
+
+   This software is provided "AS IS," without 
+   any warranty of any kind, without even any 
+   implied warranty such as merchantability 
+   or fitness for a particular purpose.
+   Will Bontrager Software, LLC grants 
+   you a royalty free license to use or 
+   modify this software provided this 
+   notice appears on all copies. 
+*/
+//
+// One placed to customize - The id value of the table tag.
+
+var TableIDvalue = "transactions";
+
+//
+//////////////////////////////////////
+var TableLastSortedColumn = -1;
+function SortTable() {
+var sortColumn = parseInt(arguments[0]);
+var type = arguments.length > 1 ? arguments[1] : 'T';
+var dateformat = arguments.length > 2 ? arguments[2] : '';
+var table = document.getElementById(TableIDvalue);
+var tbody = table.getElementsByTagName("tbody")[0];
+var rows = tbody.getElementsByTagName("tr");
+var arrayOfRows = new Array();
+type = type.toUpperCase();
+dateformat = dateformat.toLowerCase();
+for(var i=0, len=rows.length; i<len; i++) {
+	arrayOfRows[i] = new Object;
+	arrayOfRows[i].oldIndex = i;
+	var celltext = rows[i].getElementsByTagName("td")[sortColumn].innerHTML.replace(/<[^>]*>/g,"");
+	if( type=='D' ) { arrayOfRows[i].value = GetDateSortingKey(dateformat,celltext); }
+	else {
+		var re = type=="N" ? /[^\.\-\+\d]/g : /[^a-zA-Z0-9]/g;
+		arrayOfRows[i].value = celltext.replace(re,"").substr(0,25).toLowerCase();
+		}
+	}
+if (sortColumn == TableLastSortedColumn) { arrayOfRows.reverse(); }
+else {
+	TableLastSortedColumn = sortColumn;
+	switch(type) {
+		case "N" : arrayOfRows.sort(CompareRowOfNumbers); break;
+		case "D" : arrayOfRows.sort(CompareRowOfNumbers); break;
+		default  : arrayOfRows.sort(CompareRowOfText);
+		}
+	}
+var newTableBody = document.createElement("tbody");
+for(var i=0, len=arrayOfRows.length; i<len; i++) {
+	newTableBody.appendChild(rows[arrayOfRows[i].oldIndex].cloneNode(true));
+	}
+table.replaceChild(newTableBody,tbody);
+} // function SortTable()
+
+function CompareRowOfText(a,b) {
+var aval = a.value;
+var bval = b.value;
+return( aval == bval ? 0 : (aval > bval ? 1 : -1) );
+} // function CompareRowOfText()
+
+function CompareRowOfNumbers(a,b) {
+var aval = /\d/.test(a.value) ? parseFloat(a.value) : 0;
+var bval = /\d/.test(b.value) ? parseFloat(b.value) : 0;
+return( aval == bval ? 0 : (aval > bval ? 1 : -1) );
+} // function CompareRowOfNumbers()
+
+function GetDateSortingKey(format,text) {
+if( format.length < 1 ) { return ""; }
+format = format.toLowerCase();
+text = text.toLowerCase();
+text = text.replace(/^[^a-z0-9]*/,"");
+text = text.replace(/[^a-z0-9]*$/,"");
+if( text.length < 1 ) { return ""; }
+text = text.replace(/[^a-z0-9]+/g,",");
+var date = text.split(",");
+if( date.length < 3 ) { return ""; }
+var d=0, m=0, y=0;
+for( var i=0; i<3; i++ ) {
+	var ts = format.substr(i,1);
+	if( ts == "d" ) { d = date[i]; }
+	else if( ts == "m" ) { m = date[i]; }
+	else if( ts == "y" ) { y = date[i]; }
+	}
+d = d.replace(/^0/,"");
+if( d < 10 ) { d = "0" + d; }
+if( /[a-z]/.test(m) ) {
+	m = m.substr(0,3);
+	switch(m) {
+		case "jan" : m = String(1); break;
+		case "feb" : m = String(2); break;
+		case "mar" : m = String(3); break;
+		case "apr" : m = String(4); break;
+		case "may" : m = String(5); break;
+		case "jun" : m = String(6); break;
+		case "jul" : m = String(7); break;
+		case "aug" : m = String(8); break;
+		case "sep" : m = String(9); break;
+		case "oct" : m = String(10); break;
+		case "nov" : m = String(11); break;
+		case "dec" : m = String(12); break;
+		default    : m = String(0);
+		}
+	}
+m = m.replace(/^0/,"");
+if( m < 10 ) { m = "0" + m; }
+y = parseInt(y);
+if( y < 100 ) { y = parseInt(y) + 2000; }
+return "" + String(y) + "" + String(m) + "" + String(d) + "";
+} // function GetDateSortingKey()
+</script>
+
+<h4 class="mb-3">Item Order Breakdown</h4>
+
+<canvas id="transactionChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById('transactionChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['February', 'July', 'December'],
+            datasets: [{
+                label: '# of Items Ordered',
+                data: [1, 1, 7],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
 
             <hr class="mb-4">
 
