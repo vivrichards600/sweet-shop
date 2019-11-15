@@ -84,7 +84,7 @@
       <!-- Page Features -->
       <div class="row text-center">
 
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-6 mb-4 cards">
             <div class="card">
               <img class="card-img-top" src="img/cups.jpg" alt="chocolate cups">
               <div class="card-body">
@@ -98,7 +98,7 @@
             </div>
           </div>
   
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-6 mb-4 cards">
             <div class="card">
               <img class="card-img-top" src="img/straw.JPG" alt="sherbert straws">
               <div class="card-body">
@@ -112,7 +112,7 @@
             </div>
           </div>
   
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-6 mb-4 cards">
             <div class="card">
               <img class="card-img-top" src="img/discs.jpeg" alt="sherbert discs">
               <div class="card-body">
@@ -126,7 +126,7 @@
             </div>
           </div>
   
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-6 mb-4 cards">
             <div class="card">
               <img class="card-img-top" src="img/bonbon.jpg" alt="bonbon">
               <div class="card-body">
@@ -145,6 +145,16 @@
 
     </div>
     <!-- /.container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+    var cards = $(".cards");
+for(var i = 0; i < cards.length; i++){
+    var target = Math.floor(Math.random() * cards.length -1) + 1;
+    var target2 = Math.floor(Math.random() * cards.length -1) +1;
+    cards.eq(target).before(cards.eq(target2));
+}
+</script>
 
     <!-- Footer -->
     <footer class="py-5 bg-light">
