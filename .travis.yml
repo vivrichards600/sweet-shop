@@ -9,7 +9,7 @@ install:
   - webdriver-manager update
 script:
   - webdriver-manager start
-  - protractor Tests/UI Tests/conf.js
+  - protractor conf.js
 cache:
   directories:
     - node_modules
