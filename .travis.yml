@@ -3,7 +3,10 @@ dist:          trusty
 language:      node_js
 node_js:
   - "node"
-install:       npm install
+install:       
+  - npm install
+  - npm install -g protractor
+  - webdriver-manager update
 script:
   - webdriver-manager start
   - protractor Tests/UI Tests/conf.js
