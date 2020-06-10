@@ -1,2 +1,10 @@
+rules:
+  some-rule: true # Enable this rule, irrespective of its tag
+  other-rule: true # Disable this rule, irrispective of its tag
+tags: # Rule all rules for WCAG 2.0 and 2.1, level A and level AA
+  - wcag2a
+  - wcag2aa
+  - wcag21a
+  - wcag21aa
 can_request_changes: true
 can_fail_status_check: false
