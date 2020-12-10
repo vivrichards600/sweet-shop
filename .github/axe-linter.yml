@@ -7,4 +7,4 @@ tags: # Rule all rules for WCAG 2.0 and 2.1, level A and level AA
   - wcag21a
   - wcag21aa
 can_request_changes: true
-can_fail_status_check: false
+can_fail_status_check: true
