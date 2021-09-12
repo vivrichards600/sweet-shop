@@ -99,10 +99,10 @@ function getCartDetails() {
        document.getElementById('basketItems').innerHTML = basketItems;
       
         var totalWithShipping = subTotal;
-        console.log("Total with shipping: " + totalWithShipping);
         if(document.getElementById('exampleRadios2').checked) {
             var shippingCost = document.getElementById('exampleRadios2').value;
             totalWithShipping = subTotal + shippingCost;   
+            console.log("Total with shipping: " + totalWithShipping);
         }
         
         var orderTotal = "<li class='list-group-item d-flex justify-content-between'><span>Total (GBP)</span><strong>" + formatter.format(totalWithShipping) + "</strong></li>";
