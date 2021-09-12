@@ -78,6 +78,7 @@ function getCart(){
 
 function getCartDetails() {
     try {
+        console.log("Getting basket details");
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'GBP',
@@ -98,6 +99,7 @@ function getCartDetails() {
        document.getElementById('basketItems').innerHTML = basketItems;
       
         var totalWithShipping = subTotal;
+        console.log("Total with shipping: " + totalWithShipping);
         if(document.getElementById('exampleRadios2').checked) {
             var shippingCost = document.getElementById('exampleRadios2').value;
             totalWithShipping = subTotal + shippingCost;   
