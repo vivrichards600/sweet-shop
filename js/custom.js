@@ -9,6 +9,9 @@ function init() {
 
     // get cart details
     getCartDetails()
+
+    // Randomise best selling sweets
+    RandomiseBestSellingSweets()
 }
 
 function InitCookie() {
@@ -16,7 +19,7 @@ function InitCookie() {
 }
 
 function InitWebSQL() {
-    var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+    let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
     db.transaction(function (tx) { 
     tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)'); 
@@ -30,35 +33,35 @@ $(document).ready(function() {
 
         // if product already in cart then we need to increase quantity!
         if(localStorage.getItem(event.target.dataset.id) != null) {
-            var currentQuantity = JSON.parse(localStorage.getItem(event.target.dataset.id)).quantity;
+            const currentQuantity = JSON.parse(localStorage.getItem(event.target.dataset.id)).quantity;
             
-            var updatedProductJSON={"id":event.target.dataset.id, "name":event.target.dataset.name, "price":event.target.dataset.price, "quantity":currentQuantity + 1};
+            const updatedProductJSON={"id":event.target.dataset.id, "name":event.target.dataset.name, "price":event.target.dataset.price, "quantity":currentQuantity + 1};
             localStorage.setItem(event.target.dataset.id, JSON.stringify(updatedProductJSON));
         } else {
             // add item to cart
-            var productJSON={"id":event.target.dataset.id, "name":event.target.dataset.name, "price":event.target.dataset.price, "quantity":1};
+            const productJSON={"id":event.target.dataset.id, "name":event.target.dataset.name, "price":event.target.dataset.price, "quantity":1};
             localStorage.setItem(event.target.dataset.id, JSON.stringify(productJSON));
         }
 
           getCart();
 
-          
+
     });
 });
 
 function displayCartNotification(sweet) {
-    var nav = document.getElementsByClassName('messageContainer');
-    var notification = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Basket Updated!</strong> " + sweet + " added to basket.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times</span></button></div>";
+    let nav = document.getElementsByClassName('messageContainer');
+    const notification = "<div class='alert alert-success alert-dismissible fade show' role='alert'><strong>Basket Updated!</strong> " + sweet + " added to basket.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times</span></button></div>";
     nav[0].innerHTML += notification;
     
 }
 
 function getCart(){
     // Update car with number of items
-    var cartItems = 0;
-    var keys = Object.keys(localStorage);
+    let cartItems = 0;
+    const keys = Object.keys(localStorage);
     keys.forEach(function(key){
-      var currentItem = JSON.parse(localStorage[key]);
+      let currentItem = JSON.parse(localStorage[key]);
       cartItems = +cartItems +  +currentItem.quantity ;
     });
 
@@ -85,50 +88,60 @@ function getCartDetails() {
             minimumFractionDigits: 2
           })
 
-        var subTotal = "";
-        var basketItems="";
+        let subTotal = "";
+        let basketItems="";
 
-        var keys = Object.keys(localStorage);
+        const keys = Object.keys(localStorage);
         keys.forEach(function(key){
-          var currentItem = JSON.parse(localStorage[key]);
+          let currentItem = JSON.parse(localStorage[key]);
 
           basketItems += "<li class='list-group-item d-flex justify-content-between lh-condensed'><div><h6 class='my-0'>" + currentItem.name + "</h6><small class='text-muted'>x " + currentItem.quantity + "</small><br><a class='small' href='javascript:removeItem(" + currentItem.id + ");'>Delete Item</a></div><span class='text-muted'>" + formatter.format(currentItem.price) + "</span></li>";
           subTotal = +subTotal + (+currentItem.price * currentItem.quantity);
         });
 
        document.getElementById('basketItems').innerHTML = basketItems;
-      
-        var totalWithShipping = subTotal;
+
+        let totalWithShipping = subTotal;
         if(document.getElementById('exampleRadios2').checked) {
-            var shippingCost = document.getElementById('exampleRadios2').value;
-            totalWithShipping = subTotal + shippingCost;   
-           
+            const shippingCost = document.getElementById('exampleRadios2').value;
+            totalWithShipping = subTotal + shippingCost;
+
         }
-        
-        var orderTotal = "<li class='list-group-item d-flex justify-content-between'><span>Total (GBP)</span><strong>" + formatter.format(totalWithShipping) + "</strong></li>";
+
+        const orderTotal = "<li class='list-group-item d-flex justify-content-between'><span>Total (GBP)</span><strong>" + formatter.format(totalWithShipping) + "</strong></li>";
         document.getElementById('basketItems').innerHTML += orderTotal;
 
       }
       catch(error) {
-        // do nowt  
+        // do nothing
     }
 }
 
 function removeItem(itemId){
-    localStorage.removeItem(itemId);
-    
-    getCart();
-    getCartDetails();
-}
-
-function emptyCart() {
-    //var txt;
-    var r = confirm("Are you sure you want to empty your basket?");
-    if (r == true) {
-        localStorage.clear();
+    const userResponse = confirm("Are you sure you want to remove this item?");
+    if (userResponse === true) {
+        localStorage.removeItem(itemId);
         getCart();
         getCartDetails();
     } else {
-      // user cancelled - do nothing
+        // user cancelled - do nothing
+    }
+}
+
+function emptyCart() {
+    const userResponse = confirm("Are you sure you want to empty your basket?");
+    if (userResponse === true) {
+        localStorage.clear();
+        getCart();
+        getCartDetails();
     }
   }
+
+function RandomiseBestSellingSweets(){
+    const cards = $(".cards");
+    for(let i = 0; i < cards.length; i++){
+        const target = Math.floor(Math.random() * cards.length -1) + 1;
+        const target2 = Math.floor(Math.random() * cards.length -1) +1;
+        cards.eq(target).before(cards.eq(target2));
+    }
+}

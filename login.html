@@ -104,7 +104,7 @@
               Please enter a valid password.
             </div>
           </div>
-          <button type="submit" id="btn_login" class="btn btn-primary" onclick="dummyAuth();">Login</button>
+          <button type="submit" id="btn_login" class="btn btn-primary">Login</button>
         </form>
         <div class="social">
           <a href="#"><img src="img/twitter.png" alt="twitter"/></a> <a href="#"><img src="img/facebook.png" alt="facebook" /></a> <a href="#"><img src="img/linkedin.png" alt="linkedin"/></a>
@@ -179,12 +179,12 @@
 
         // event.preventDefault(); // prevent PageReLoad
 
-        var ValidEmail = $('#exampleInputEmail').val().length > 3  &&  $('#exampleInputEmail').val().includes("@") ;
-        var ValidPassword = $('#exampleInputPassword').val().length > 0;
+        const ValidEmail = $('#exampleInputEmail').val().length > 3  &&  $('#exampleInputEmail').val().includes("@") ;
+        const ValidPassword = $('#exampleInputPassword').val().length > 0;
 
         if (ValidEmail === true && ValidPassword === true) { // if ValidEmail & ValidPassword
           event.preventDefault(); // prevent PageReLoad
-          window.location.href = "https://sweetshop.netlify.com/00efc23d-b605-4f31-b97b-6bb276de447e.html";
+          window.location.href = "00efc23d-b605-4f31-b97b-6bb276de447e.html";
 
         }
       });
