@@ -1,13 +1,15 @@
 # Sweet Shop
-An interntionally broken web application to help demonstrate Chrome DevTools.
+An intentionally broken web application to help demonstrate Chrome DevTools.
 
 ## Preview
 
 **[View Live Preview](https://sweetshop.netlify.com)**
 
-## Download and Installation
+## Download and run locally
 
-To begin using this project, simply download this repository and open one of the HTML files. To make edits, simply edit the HTML and CSS files included with the project in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+1. Clone this repository `git clone git@github.com:vivrichards600/sweet-shop.git`
+2. Navigate to the cloned the directory
+3. Open [index.html](index.html) in your web browser
 
 ## About
 
