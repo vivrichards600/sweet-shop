@@ -15,4 +15,4 @@ An intentionally broken web application to help demonstrate Chrome DevTools.
 
 Sweet Shop is an open-source project released under the MIT license, which means you can use it for any purpose, even for commercial projects.
 
-Sweet Shop was created by and is maintained by **[Viv Richards](https://vivrichards.co.uk/)**.
+Sweet Shop was created and is maintained by **[Viv Richards](https://vivrichards.co.uk/)**.
