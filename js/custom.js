@@ -1,8 +1,7 @@
 function init() {
 
     // Init cookies and WebSQL to demo
-    InitCookie(); 
-    InitWebSQL();
+    InitCookie();
     
     // get cart
     getCart();
@@ -16,16 +15,6 @@ function init() {
 
 function InitCookie() {
     document.cookie = "EmailAddress=BloggsJ1@gmail.com";
-}
-
-function InitWebSQL() {
-    let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-
-    db.transaction(function (tx) { 
-    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)'); 
-    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")'); 
-    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")'); 
-    }); 
 }
 
 $(document).ready(function() {
