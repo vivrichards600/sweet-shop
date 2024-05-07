@@ -118,7 +118,7 @@ function removeItem(itemId){
 
 function emptyBasket() {
     if (localStorage.length>0){
-        const userResponse = confirm("Are you sure you want to remove this item?");
+        const userResponse = confirm("Are you sure you want to empty your basket?");
         if (userResponse === true) {
             localStorage.clear();
             getCart();
