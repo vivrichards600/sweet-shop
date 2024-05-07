@@ -99,7 +99,6 @@ function getCartDetails() {
 
         const orderTotal = "<li class='list-group-item d-flex justify-content-between'><span>Total (GBP)</span><strong>" + formatter.format(totalWithShipping) + "</strong></li>";
         document.getElementById('basketItems').innerHTML += orderTotal;
-
       }
       catch(error) {
         // do nothing
@@ -115,6 +114,20 @@ function removeItem(itemId){
     } else {
         // user cancelled - do nothing
     }
+}
+
+function emptyBasket() {
+    if (localStorage.length>0){
+        const userResponse = confirm("Are you sure you want to remove this item?");
+        if (userResponse === true) {
+            localStorage.clear();
+            getCart();
+            getCartDetails();
+        } else {
+            // user cancelled - do nothing
+        }
+    }
+
 }
 
 function emptyCart() {
