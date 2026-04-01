@@ -72,7 +72,8 @@
       <header class="my-4">
           <h1 class="display-3">Your Account</h1>
           <p class="lead">
-          Welcome back <a href="#">test@user.com</a></span>  
+          Welcome back <strong id="accountGreeting">Holly Carter</strong>.
+          You are viewing the account for <a href="#" id="accountEmail">holly@sweetshop.local</a>
         </p>
         </header>
 
@@ -91,6 +92,38 @@
           
         </div>
         <div class="col-md-8 order-md-1">
+          <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Orders placed</h5>
+                  <p class="card-text display-4 mb-0" id="accountOrderCount">3</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Favourite sweet</h5>
+                  <p class="card-text" id="accountFavouriteSweet">Rhubarb and Custards</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Total spent</h5>
+                  <p class="card-text" id="accountTotalSpend">£0.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning" role="alert">
+            Try next: <strong id="accountSuggestedSweet">Cherry Lips</strong>.
+            <span id="accountNotes">Your usual pick is back in stock this week.</span>
+          </div>
+
           <h4 class="mb-3">Previous Orders</h4>
             <div class="row">
               <div class="col-md-12 mb-3">
@@ -103,24 +136,12 @@
                           <th><a href="javascript:SortTable(0,'N');" class="order-total">Order Total</a></th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">#1</th>
-                          <td>11th Feb 2019</td>
-                          <td>Swansea Mixture x 1</td>
-                          <td>1.50</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">#2</th>
-                          <td>11th July 2019</td>
-                          <td>Sherbert Straws x 1</td>
-                          <td>0.75</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">#3</th>
-                          <td>1st December 2019</td>
-                          <td>Chocolate Cups x 5<br>Swansea Mixture x 2</td>
-                          <td>8.00</td>
+                      <tbody id="transactionsBody">
+                        <tr id="transactionsBodyFallback">
+                          <th scope="row">#1048</th>
+                          <td>11th Feb 2026</td>
+                          <td>Rhubarb and Custards x 2</td>
+                          <td>3.20</td>
                         </tr>
                       </tbody>
                     </table>
@@ -254,39 +275,6 @@ return "" + String(y) + "" + String(m) + "" + String(d) + "";
 
 <canvas id="transactionChart" width="400" height="200"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-<script>
-    var ctx = document.getElementById('transactionChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['February', 'July', 'December'],
-            datasets: [{
-                label: '# of Items Ordered',
-                data: [1, 1, 7],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    </script>
 
             <hr class="mb-4">
 
