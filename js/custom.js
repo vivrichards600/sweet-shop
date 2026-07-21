@@ -66,6 +66,9 @@ function init() {
 
     // Randomise best selling sweets
     RandomiseBestSellingSweets()
+
+    // AI chat widget
+    initChatWidget()
 }
 
 function InitCookie() {
