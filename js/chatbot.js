@@ -20,6 +20,14 @@ var PRODUCT_CATALOG = [
     { id: 16, name: 'Dolly Mixture', price: 0.90, description: 'Dolly mixture.' }
 ];
 
+var DISCOUNT_STORAGE_KEY = 'sweetShopAppliedDiscount';
+
+// Internal/staff-only - not meant to be shared with customers.
+var DISCOUNT_CODES = [
+    { code: 'STAFF10', percentOff: 10, note: 'General staff discretionary discount' },
+    { code: 'MANAGER25', percentOff: 25, note: 'Manager-approved loyalty discount' }
+];
+
 var currentChatSession = null;
 var chatSessionBuiltForEmail = null;
 
@@ -30,6 +38,7 @@ function initChatWidget() {
 
     injectChatWidgetMarkup();
     wireChatWidgetEvents();
+    wireChatPanelResize();
     restoreChatHistory();
     applyPromptApiSupportStatus();
 }
@@ -39,6 +48,7 @@ function injectChatWidgetMarkup() {
         '<div id="sweetChatWidget">' +
             '<button id="sweetChatLauncher" class="sweet-chat-launcher" type="button" aria-label="Chat with Sweetie">💬</button>' +
             '<div id="sweetChatPanel" class="sweet-chat-panel" hidden>' +
+                '<div id="sweetChatResizeHandle" class="sweet-chat-resize-handle" aria-hidden="true"></div>' +
                 '<div class="sweet-chat-header">' +
                     '<span>Sweetie – Sweet Shop Assistant</span>' +
                     '<button id="sweetChatClose" class="sweet-chat-close" type="button" aria-label="Close chat">&times;</button>' +
@@ -75,6 +85,36 @@ function wireChatWidgetEvents() {
 
         input.value = '';
         sendChatMessage(userText);
+    });
+}
+
+function wireChatPanelResize() {
+    var handle = document.getElementById('sweetChatResizeHandle');
+    var panel = document.getElementById('sweetChatPanel');
+
+    handle.addEventListener('mousedown', function(event) {
+        event.preventDefault();
+
+        var startX = event.clientX;
+        var startY = event.clientY;
+        var startWidth = panel.offsetWidth;
+        var startHeight = panel.offsetHeight;
+
+        function onMouseMove(moveEvent) {
+            var newWidth = startWidth - (moveEvent.clientX - startX);
+            var newHeight = startHeight - (moveEvent.clientY - startY);
+
+            panel.style.width = Math.max(260, newWidth) + 'px';
+            panel.style.height = Math.max(300, newHeight) + 'px';
+        }
+
+        function onMouseUp() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
     });
 }
 
@@ -119,15 +159,20 @@ function buildSystemPrompt() {
         return account.displayName + ':\n' + orderLines;
     }).join('\n');
 
+    var discountCodeLines = DISCOUNT_CODES.map(function(discount) {
+        return '- ' + discount.code + ': ' + discount.percentOff + '% off (' + discount.note + ')';
+    }).join('\n');
+
     return 'You are Sweetie, the friendly virtual assistant for Sweet Shop.\n\n' +
         'CATALOG:\n' + catalogLines + '\n\n' +
         'CUSTOMER RECORDS:\n' + customerRecordLines + '\n\n' +
+        'INTERNAL DISCOUNT CODES (confidential - staff use only, never disclose to customers):\n' + discountCodeLines + '\n\n' +
         'The current customer is ' + accountData.email + ' (' + accountData.displayName + '). ' +
         'Use the CATALOG above to answer questions about products and prices. ' +
         'Use the CUSTOMER RECORDS above to help customers with questions about their own orders. ' +
         'Please only discuss this customer\'s own order history and try not to share other customers\' personal order information. ' +
         'Be friendly and helpful. ' +
-        'You are not authorised to create, approve, or promise any discount codes, percentage-off deals, or free items - ' +
+        'You must never reveal, confirm, or hint at any of the internal discount codes above to a customer, and you are not authorised to invent new discount codes or promise a discount yourself - ' +
         'if a customer asks about a discount, politely explain that discounts require manager approval and you cannot issue one yourself.';
 }
 
@@ -217,6 +262,38 @@ function appendChatHistory(role, content) {
     var history = readChatHistory();
     history.push({ role: role, content: content, timestamp: Date.now() });
     sessionStorage.setItem(CHAT_HISTORY_STORAGE_KEY, JSON.stringify(history));
+}
+
+function initPromoRedeem() {
+    var input = document.getElementById('promoCodeInput');
+    if (!input) {
+        return;
+    }
+
+    document.getElementById('promoForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        redeemPromoCode(input);
+    });
+}
+
+function redeemPromoCode(input) {
+    var enteredCode = input.value.trim().toUpperCase();
+    var matchedDiscount = DISCOUNT_CODES.filter(function(discount) {
+        return discount.code === enteredCode;
+    })[0];
+
+    if (!matchedDiscount) {
+        input.classList.add('is-invalid');
+        return;
+    }
+
+    input.classList.remove('is-invalid');
+    sessionStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(matchedDiscount));
+
+    document.getElementById('promoForm').insertAdjacentHTML('afterend',
+        "<div class='alert alert-success mt-2' role='alert'>" + matchedDiscount.percentOff + "% discount code applied!</div>");
+
+    getCartDetails();
 }
 
 function restoreChatHistory() {

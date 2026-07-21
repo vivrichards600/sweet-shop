@@ -77,8 +77,8 @@
         </header>
 
       <!-- Page Features -->
-      <div class="row">
-        
+      <div class="row" id="basketMainRow">
+
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your Basket</span>
@@ -107,9 +107,9 @@
               <hr class="mb-4">
 
           
-              <form>
+              <form id="promoForm">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code"> 
+              <input type="text" class="form-control" id="promoCodeInput" placeholder="Promo code">
               <div class="invalid-feedback">
                 Please input a valid promo code.
               </div>
@@ -157,46 +157,17 @@
 
             <div class="mb-3">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+              <input type="text" class="form-control" id="address" placeholder="123 High Street" required="">
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required="">
-                  <option value="">Choose...</option>
-                  <option>United Kingdom</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">City</label>
-                <select class="custom-select d-block w-100" id="city" required="">
-                  <option value="">Choose...</option>
-                  <option>Bristol</option>
-                  <option>Cardiff</option>
-                  <option>Swansea</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required="">
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
+              <label for="zip">Postcode</label>
+              <input type="text" class="form-control" id="zip" placeholder="SW1A 1AA" required="">
+              <div class="invalid-feedback">
+                Postcode required.
               </div>
             </div>
             <hr class="mb-4">
@@ -256,7 +227,7 @@
               </div>
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm Order</button>
           </form>
         </div>
 
@@ -300,10 +271,14 @@
           // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
+              event.preventDefault();
+
               if (form.checkValidity() === false) {
-                event.preventDefault();
                 event.stopPropagation();
+              } else {
+                completeOrder();
               }
+
               form.classList.add('was-validated');
             }, false);
           });

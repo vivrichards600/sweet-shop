@@ -69,6 +69,9 @@ function init() {
 
     // AI chat widget
     initChatWidget()
+
+    // Promo code redemption
+    initPromoRedeem()
 }
 
 function InitCookie() {
@@ -328,6 +331,11 @@ function getCartDetails() {
 
        document.getElementById('basketItems').innerHTML = basketItems;
 
+        const appliedDiscount = JSON.parse(sessionStorage.getItem(DISCOUNT_STORAGE_KEY) || 'null');
+        if (appliedDiscount) {
+            subTotal = subTotal - (subTotal * appliedDiscount.percentOff / 100);
+        }
+
         let totalWithShipping = subTotal;
         if(document.getElementById('exampleRadios2').checked) {
             const shippingCost = document.getElementById('exampleRadios2').value;
@@ -376,6 +384,20 @@ function emptyCart() {
         getCartDetails();
     }
   }
+
+function completeOrder() {
+    const orderNumber = 'SS' + Math.floor(10000 + Math.random() * 90000);
+    const mainRow = document.getElementById('basketMainRow');
+
+    if (mainRow) {
+        mainRow.style.display = 'none';
+        mainRow.insertAdjacentHTML('afterend', "<div class='alert alert-success' role='alert'><strong>Thank you!</strong> Your order " + orderNumber + " has been placed.</div>");
+    }
+
+    localStorage.clear();
+    sessionStorage.removeItem(DISCOUNT_STORAGE_KEY);
+    getCart();
+}
 
 function RandomiseBestSellingSweets(){
     const cards = $(".cards");
